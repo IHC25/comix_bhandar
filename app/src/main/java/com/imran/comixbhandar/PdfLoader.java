@@ -1,5 +1,6 @@
 package com.imran.comixbhandar;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,6 +13,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.airbnb.lottie.LottieAnimationView;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnLoadCompleteListener;
+import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
 public class PdfLoader extends AppCompatActivity {
@@ -40,6 +42,10 @@ public class PdfLoader extends AppCompatActivity {
         pdfView.setVisibility(View.INVISIBLE);
         pdfLoading.setVisibility(View.VISIBLE);
 
+        // Retrieve the last viewed page from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("ComicPreferences", MODE_PRIVATE);
+        pdfPage = sharedPreferences.getInt(pdfFileName, 0); // Use the pdfFileName as the key
+
 
         //Loading PDF
         pdfView.fromAsset(pdfFileName)
@@ -58,9 +64,25 @@ public class PdfLoader extends AppCompatActivity {
                 .swipeHorizontal(false)
                 .enableSwipe(true)
                 .enableDoubletap(true)
+                .onPageChange(new OnPageChangeListener() {
+                    @Override
+                    public void onPageChanged(int page, int pageCount) {
+                        pdfPage = page;
+                        // Save the current page number in SharedPreferences
+                        savePageNumber(pdfFileName, page);
+                    }
+                })
                 .defaultPage(pdfPage)
                 .enableAnnotationRendering(false)
                 .enableAntialiasing(true)
                 .load();
+    }
+
+    // Save the current page number to SharedPreferences
+    public void savePageNumber(String fileName, int pageNumber) {
+        SharedPreferences sharedPreferences = getSharedPreferences("ComicPreferences", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(fileName, pageNumber); // Save page number using file name as the key
+        editor.apply(); // Apply changes asynchronously
     }
 }
