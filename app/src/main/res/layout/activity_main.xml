@@ -104,6 +104,7 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textColor="#2E2222"
+                        android:maxLines="1"
                         />
                 </LinearLayout>
 
@@ -150,12 +151,13 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textColor="#2E2222"
+                        android:maxLines="1"
                         />
                 </LinearLayout>
 
                 <!-- Item 2 -->
                 <LinearLayout
-                    android:id="@+id/newOne"
+                    android:id="@+id/eksringaObhijanBtn"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
@@ -182,6 +184,7 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textColor="#2E2222"
+                        android:maxLines="1"
                         />
                 </LinearLayout>
 
@@ -228,6 +231,7 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textColor="#2E2222"
+                        android:maxLines="1"
                         />
                 </LinearLayout>
 
@@ -260,6 +264,7 @@
                         android:textStyle="bold"
                         android:gravity="center"
                         android:textColor="#2E2222"
+                        android:maxLines="1"
                         />
                 </LinearLayout>
 
