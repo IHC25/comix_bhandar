@@ -12,8 +12,6 @@ import com.github.barteksc.pdfviewer.PDFView;
 
 public class MainActivity extends AppCompatActivity {
 
-    PDFView pdfView;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +22,6 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        pdfView = findViewById(R.id.pdfView);
 
-        pdfView.fromAsset("soviet_deshe_tintin.pdf")
-                .load();
     }
 }
